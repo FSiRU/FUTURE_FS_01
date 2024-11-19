@@ -53,7 +53,39 @@ tabs.forEach(tab =>{
 })
 
 
-/*==================== SERVICES MODAL ====================*/
+// ==================== SERVICES MODAL ====================
+document.addEventListener('DOMContentLoaded', () => {
+    const modalViews = document.querySelectorAll('.services__modal');
+    const modalButtons = document.querySelectorAll('.services__button');
+    const modalCloseButtons = document.querySelectorAll('.services__modal-close');
+
+    if (modalViews.length && modalButtons.length && modalCloseButtons.length) {
+        // Function to open a specific modal
+        const openModal = (index) => {
+            modalViews[index]?.classList.add('active-modal');
+        };
+
+        // Function to close all modals
+        const closeModal = () => {
+            modalViews.forEach((modalView) => {
+                modalView.classList.remove('active-modal');
+            });
+        };
+
+        // Attach click events to "View More" buttons
+        modalButtons.forEach((button, index) => {
+            button.addEventListener('click', () => openModal(index));
+        });
+
+        // Attach click events to close buttons
+        modalCloseButtons.forEach((closeButton) => {
+            closeButton.addEventListener('click', closeModal);
+        });
+    } else {
+        console.error('Modal elements not found. Check your HTML structure.');
+    }
+});
+
 
 
 /*==================== PORTFOLIO SWIPER  ====================*/
